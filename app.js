@@ -2,7 +2,6 @@
 //Creating the object for the Httprequest
 let xhr =new XMLHttpRequest();
 
-console.log(typeof xhr);
 
 //€Creating the connection using the URL
 xhr.open("GET","https://restcountries.com/v2/all");
@@ -13,11 +12,11 @@ xhr.send();
 //while onloading URL funtion will executed
 xhr.onload = function (){
 
-    if(xhr.status>=200&&xhr.status<=400) {
+    if(xhr.status>=200 && xhr.status<=400) {
 
         result=JSON.parse(this.response);
 
-        //console.log(result[238].currencies[0].length);
+        
         //a. Get all the countries from Asia continent /region using Filter function
         let asianCountries = result.filter(data=> data.region==="Asia")
         console.log(`Asian Countries:`,asianCountries);
@@ -44,12 +43,12 @@ xhr.onload = function (){
 
         //e. Print the country which uses US Dollars as currency.
 
-        //Eliminate countries without curreny key
+        //Eliminate countries without currency key
         let filteredCurrency= result.filter(data=>{ return data.currencies!==undefined })
         let countryList=[];
         
         filteredCurrency.forEach(data2=>{
-
+            
             data2.currencies.forEach(data3=>{
                 if(data3.code==="USD"){
 
